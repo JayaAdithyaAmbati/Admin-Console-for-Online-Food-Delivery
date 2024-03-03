@@ -1,0 +1,87 @@
+{% extends 'adminBase.html'%}
+{% block content%}
+<div class="container ins mt-5">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="rname">Restaurant Name</label>
+            <input class="form-control" type="text" name="restaurant_name" id="rname" value="{{ form.restaurant_name.value }}">
+            {% for error in form.restaurant_name.errors %}
+                <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="rimg">Restaurant Image</label>
+            <input class="form-control" type="file" name="restaurant_img" id="rimg" value="{{ form.restaurant_img.value }}">
+            {% for error in form.restaurant_img.errors %}
+                <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col">
+                    <label for="fname">Food Item</label>
+                </div>
+                <div class="col">
+                    <label for="place">Place</label>
+                </div>
+                <div class="col">
+                    <label for="cost">Cost</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input class="form-control" type="text" name="food_name" id="fname" value="{{ form.food_name.value }}">
+                    {% for error in form.food_name.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="col">
+                    <input class="form-control" type="text" name="place" id="place" value="{{ form.place.value }}">
+                    {% for error in form.place.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="col">
+                    <input class="form-control" type="number" name="cost" id="cost" value="{{ form.cost.value }}">
+                    {% for error in form.cost.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col">
+                    <label for="rating">Rating</label>
+                </div>
+                <div class="col">
+                    <label for="img">Image</label>
+                </div>
+                <div class="col">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input class="form-control" type="number" name="rating" id="rating" value="{{ form.rating.value }}">
+                    {% for error in form.rating.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="col">
+                    <input class="form-control" type="file" name="img" id="img" value="{{ form.img.value }}">
+                    {% for error in form.img.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="col">
+                    <button class="btn btn-success buttwid" type="submit" style="color: black;"><strong>Add Record</strong></button>
+                </div>
+            </div>
+        </div>
+        <a href="{% url 'show' %}" class="btn btn-danger mt-3">Back</a>
+    </form>
+</div>
+{% endblock %}

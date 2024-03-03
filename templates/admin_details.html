@@ -1,0 +1,49 @@
+{% extends 'adminBase.html' %}
+{% block content %}
+<div class="container">
+    <h4 class="text-center">Restaurant Details</h4>
+    <table class="table table-bordered">
+        <tr>
+            <th>Restaurant Name</th>
+            <td>{{ restaurant.restaurant_name }}</td>
+        </tr>
+        <tr>
+            <th>Food Name</th>
+            <td>{{ restaurant.food_name }}</td>
+        </tr>
+        <tr>
+            <th>Place</th>
+            <td>{{ restaurant.place }}</td>
+        </tr>
+        <tr>
+            <th>Cost</th>
+            <td>{{ restaurant.cost }}</td>
+        </tr>
+        <tr>
+            <th>Rating</th>
+            <td>{{ restaurant.rating }}</td>
+        </tr>
+        <tr>
+            <th>Images</th>
+            <td>
+                {% if restaurant.restaurant_img %}
+                <a href="{{restaurant.restaurant_img.url}}" target="_self">
+                <img  src="{{ restaurant.restaurant_img.url }}" alt="{{ restaurant.restaurant_name }}" class="img-thumbnail" style="max-width: 300px; max-height: 300px;margin-left: 20px; border:solid 1px black">
+                </a>
+                {% else %}
+                No image available
+                {% endif %}
+                {% if restaurant.img %}
+                <a href="{{restaurant.img.url}}" target="_self">
+                <img src="{{ restaurant.img.url }}" alt="{{ restaurant.restaurant_name }}" class="img-thumbnail" style="max-width: 300px; max-height: 300px;border:solid 1px black;margin-left: 20px">
+                </a>
+                {% else %}
+                No image available
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    <a href="{% url 'show' %}" class="btn btn-danger">Back</a>
+    <a href="{% url 'update' restaurant.id %}" class="btn btn-secondary ml-5">update</a>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'userBase.html' %}
+{% block content %}
+<div class="container">
+    <h4 class="text-center">Restaurant Details</h4>
+    <table class="table table-borderless">
+        <tr>
+            <th>Restaurant Name</th>
+            <td>{{ restaurant.restaurant_name }}</td>
+        </tr>
+        <tr>
+            <th>Restaurant Image</th>
+            <td>
+                {% if restaurant.restaurant_img %}
+                    <a href="{{restaurant.restaurant_img.url}}" target="_self">
+                    <img  src="{{ restaurant.restaurant_img.url }}" alt="{{ restaurant.restaurant_name }}" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">
+                    </a>
+                {% else %}
+                    No image available
+                {% endif %}
+            </td>
+        </tr>        
+        <tr>
+            <th>Food Name</th>
+            <td>{{ restaurant.food_name }}</td>
+        </tr>
+        <tr>
+            <th>Place</th>
+            <td>{{ restaurant.place }}</td>
+        </tr>
+        <tr>
+            <th>Cost</th>
+            <td>{{ restaurant.cost }}</td>
+        </tr>
+        <tr>
+            <th>Rating</th>
+            <td>{{ restaurant.rating }}</td>
+        </tr>
+        <tr>
+            <th>Images</th>
+            <td>
+                
+                {% if restaurant.img %}
+                <a href="{{restaurant.img.url}}" target="_self">
+                <img src="{{ restaurant.img.url }}" alt="{{ restaurant.restaurant_name }}" class="img-thumbnail" style="max-width: 250px; max-height: 250px;">
+                </a>
+                {% else %}
+                No image available
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    <a href="{% url 'user' %}" class="btn btn-danger">Back</a>
+</div>
+
+{% endblock %}

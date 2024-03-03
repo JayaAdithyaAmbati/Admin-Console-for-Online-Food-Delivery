@@ -1,0 +1,63 @@
+{% extends 'userBase.html'%}
+{% load static %}
+{% block content%}
+  <div class="container mt-5 text-center px-0 pt-0">
+    <img src="{% static 'MergedImages.png' %}" alt="" class="img-thumbnail" width="100%">
+    <p style="color: black; font-size: 30px;">Must Tries In Hyderabad</p>
+    <hr/>
+  </div>
+
+
+  <div class="container mt-5">
+    <div class="row">
+      {% for restaurant in restaurants %}
+      <div class="col-md-4 mb-4">
+        <div class="card custom-tooltip">
+          {% if restaurant.img %}
+          <a href="{% url 'user_details' restaurant.id %}">
+            <img src="{{ restaurant.img.url }}" class="card-img-top" alt="Restaurant Image">
+          </a>
+          {% else %}
+          <img src="{% static 'default-restaurant-img.jpg' %}" class="card-img-top" alt="Default Restaurant Image">
+          {% endif %}
+          <div class="card-body">
+            <div class="row">
+              <div class="col-9">
+                <h5 class="card-title">{{ restaurant.food_name }}</h5>
+              </div>
+              <div class="col">
+                <div class="col">
+                  {% if restaurant.restaurant_img %}
+                    <img src="{{ restaurant.restaurant_img.url }}" class="card-img-top" style="width: 40px; height: 40px;">
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="card-title2">{{ restaurant.restaurant_name }}</p>
+              </div>
+            </div>
+            <p class="card-text">{{ restaurant.place }}</p>
+            <p class="card-text">Cost: ${{ restaurant.cost }}</p>
+            <p class="card-text" id="{{restaurant.id}}">
+                <script>
+                        var p = document.getElementById("{{restaurant.id}}")
+                        p.innerHTML = "Rating: "
+                        for(i=0;i<"{{restaurant.rating}}";i++){
+                            p.innerHTML += "<span class='fa fa-star stark checked'></span>"
+                        }
+                        for(i=i;i<5;i++){
+                            p.innerHTML += "<span class='fa fa-star stark unchecked'></span>"
+                        }
+                </script>
+              <span class="tooltip-content">Hover to view more details</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+{%endblock%}
